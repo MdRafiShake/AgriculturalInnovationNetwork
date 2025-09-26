@@ -17,8 +17,8 @@ const SoilReport = ({ location }) => {
   });
 
   const place = location || {
-    village: "Munshiganj",
-    district: "Dhaka",
+    village: weatherData?.name || "Unknown",
+    district: weatherData?.sys?.country || "Unknown",
     coordinates: lat && lon ? `${lat.toFixed(3)}°N, ${lon.toFixed(3)}°E` : "-",
   };
 

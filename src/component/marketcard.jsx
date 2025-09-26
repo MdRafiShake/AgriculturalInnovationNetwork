@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cart from "./cart";
 
 function MarketCard() {
   const rating = 4; // out of 5
@@ -6,6 +7,11 @@ function MarketCard() {
   const [comments, setComments] = useState([
     "This is a very useful product for my farm!",
   ]);
+
+  const product = {
+    name: "Product Name",
+    price: 2999,
+  };
 
   // Render stars function
   const renderStars = (count) => {
@@ -29,6 +35,30 @@ function MarketCard() {
     }
   };
 
+  // ✅ Add to Cart (save in localStorage)
+  const handleAddToCart = () => {
+    const existingCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const newCart = [...existingCart, product];
+    localStorage.setItem("cartItems", JSON.stringify(newCart));
+
+    window.dispatchEvent(new Event("cartUpdated")); // Refresh to update cart count
+  
+    
+    // alert(`${product.name} added to cart!`);
+  };
+
+  // ✅ Checkout button handler
+  const handleCheckout = () => {
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+    } else {
+      // alert(`Proceeding to checkout with ${cart.length} items.`);
+      // 👉 Here you can redirect to checkout page
+      // e.g., navigate("/checkout")
+    }
+  };
+
   return (
     <div className="w-[92%] md:w-[95%] bg-lime-100 rounded-2xl shadow-lg border border-lime-300 overflow-hidden hover:shadow-xl transition duration-300 mt-[20px] mx-auto">
       <div className="flex flex-col md:flex-row text-black">
@@ -37,7 +67,7 @@ function MarketCard() {
           <img
             src=""
             alt="Product"
-            className=" w-[100%] md:w-[100%] object-contain"
+            className="w-[100%] md:w-[100%] object-contain"
           />
         </div>
 
@@ -45,7 +75,7 @@ function MarketCard() {
         <div className="p-4 flex-1 flex flex-col justify-between">
           <div>
             <h2 className="text-lg md:text-xl font-bold text-lime-800">
-              Product Name
+              {product.name}
             </h2>
             <p className="text-sm md:text-base text-lime-700 mt-1">
               A short description of the product goes here.
@@ -57,9 +87,24 @@ function MarketCard() {
 
           {/* Price and Add Button */}
           <div className="flex justify-between items-center mt-4">
-            <span className="text-xl font-semibold text-lime-900">৳ 2999</span>
-            <button className="px-4 py-2 rounded-lg bg-lime-500 text-white font-medium transition transform hover:bg-lime-600 hover:scale-105 hover:shadow-lg hover:shadow-lime-400/50">
+            <span className="text-xl font-semibold text-lime-900">
+              ৳ {product.price}
+            </span>
+            <button
+              onClick={handleAddToCart}
+              className="px-4 py-2 rounded-lg bg-lime-500 text-white font-medium transition transform hover:bg-lime-600 hover:scale-105 hover:shadow-lg hover:shadow-lime-400/50"
+            >
               Add to Cart
+            </button>
+          </div>
+
+          {/* ✅ Checkout Button */}
+          <div className="mt-4">
+            <button
+              onClick={handleCheckout}
+              className="w-full px-4 py-2 rounded-lg bg-emerald-600 text-white font-semibold transition transform hover:bg-emerald-700 hover:scale-105 shadow-lg"
+            >
+              Checkout
             </button>
           </div>
 
@@ -93,6 +138,8 @@ function MarketCard() {
           </div>
         </div>
       </div>
+
+      <Cart/>
     </div>
   );
 }

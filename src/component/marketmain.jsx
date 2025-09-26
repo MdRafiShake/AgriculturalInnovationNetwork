@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import Cart from "../component/cart.jsx"
 
 function MarketMain() {
   // Sample farming item data
@@ -98,11 +99,14 @@ function MarketMain() {
                 <button className="px-3 py-2 rounded-lg bg-lime-500 text-white font-medium transition transform hover:bg-lime-600 hover:scale-105 hover:shadow-lg hover:shadow-lime-400/50">
                   Add
                 </button></Link>
+                
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      <Cart/>
     </div>
   );
 }
