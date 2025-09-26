@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-[#8FA31E] w-full h-[80px] lg:h-[100px] 2xl:max-w-[2000px] mx-auto flex items-center px-4 shadow-lg shadow-[#556B2F]/50">
+    <div className="bg-[#8FA31E] w-full h-[80px] lg:h-[100px]  2xl:max-w-[2000px] mx-auto flex items-center px-4 shadow-lg shadow-[#556B2F]/50">
       {/* Logo + Title */}
-      <div className="logo-container flex items-center text-white font-bold text-xl lg:text-2xl w-[200px] lg:w-[300px]">
+      <Link to="/">
+      <div className="logo-container flex items-center cursor-pointer text-white font-bold text-xl lg:text-2xl w-[200px] lg:w-[300px]">
         <span>
           <img
             src="../public/ain-logo-01.png"
@@ -18,51 +20,53 @@ const Navbar = () => {
           Harvesting Friend
         </span>
       </div>
+      </Link>
 
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-6 ml-auto text-white font-semibold lg:text-lg">
-        <a
-          href="#"
+        <Link
+          to="/"
           className="relative hover:text-[#2F4F1F] transition-colors duration-300 
           after:content-[''] after:absolute after:w-0 after:h-[2px] after:left-0 
           after:-bottom-1 after:bg-white after:transition-all after:duration-300 
           hover:after:w-full"
         >
           Home
-        </a>
-        <a
-          href="#"
+        </Link>
+        <Link
+          to="/product-list"
           className="relative hover:text-[#2F4F1F] transition-colors duration-300 
           after:content-[''] after:absolute after:w-0 after:h-[2px] after:left-0 
           after:-bottom-1 after:bg-white after:transition-all after:duration-300 
           hover:after:w-full"
         >
           Marketplace
-        </a>
-        <a
-          href="#"
+        </Link>
+        <Link
+          to="/blogs"
           className="relative hover:text-[#2F4F1F] transition-colors duration-300 
           after:content-[''] after:absolute after:w-0 after:h-[2px] after:left-0 
           after:-bottom-1 after:bg-white after:transition-all after:duration-300 
           hover:after:w-full"
         >
-          Harvesting Tips
-        </a>
-        <a
-          href="#"
+          Harvesting Blogs
+        </Link>
+        <Link
+          to="/diary"
           className="relative hover:text-[#2F4F1F] transition-colors duration-300 
           after:content-[''] after:absolute after:w-0 after:h-[2px] after:left-0 
           after:-bottom-1 after:bg-white after:transition-all after:duration-300 
           hover:after:w-full"
         >
           Farm Diary
-        </a>
+        </Link>
       </div>
 
       {/* Login button (desktop) */}
-      <button className="hidden md:block bg-[#556B2F] border-none text-white font-bold px-4 py-2 lg:px-6 lg:py-3 rounded transition duration-300 hover:bg-[#6B8E23] hover:scale-105 cursor-pointer ml-4">
-        Log In
-      </button>
+      <Link to="/login">
+        <button className="hidden md:block bg-[#556B2F] border-none text-white font-bold px-4 py-2 lg:px-6 lg:py-3 rounded transition duration-300 hover:bg-[#6B8E23] hover:scale-105 cursor-pointer ml-4">
+          Log In
+        </button></Link>
 
       {/* Mobile Hamburger Button */}
       <div className="ml-auto lg:hidden">
@@ -109,33 +113,34 @@ const Navbar = () => {
       {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div className="absolute top-[80px] right-0 w-[200px] bg-[#8FA31E] flex flex-col items-center py-4 space-y-4 lg:hidden shadow-lg shadow-[#556B2F]/50 animate-slideDown">
-          <a
-            href="#"
+          <Link
+            to="/"
             className="text-white font-semibold hover:text-[#2F4F1F] transition-colors duration-300"
           >
             Home
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link 
+            to="/product-list"
             className="text-white font-semibold hover:text-[#2F4F1F] transition-colors duration-300"
           >
             Marketplace
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/blogs"
             className="text-white font-semibold hover:text-[#2F4F1F] transition-colors duration-300"
           >
             Harvesting Tips
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/diary"
             className="text-white font-semibold hover:text-[#2F4F1F] transition-colors duration-300"
           >
             Farm Diary
-          </a>
-          <button className="bg-[#556B2F] border-none text-white font-bold px-4 py-2 rounded transition duration-300 hover:bg-[#6B8E23] hover:scale-105 cursor-pointer">
-            Log In
-          </button>
+          </Link>
+          <Link to="/login">
+            <button className="bg-[#556B2F] border-none text-white font-bold px-4 py-2 rounded transition duration-300 hover:bg-[#6B8E23] hover:scale-105 cursor-pointer">
+              Log In
+            </button></Link>
         </div>
       )}
     </div>

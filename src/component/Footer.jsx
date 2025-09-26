@@ -3,7 +3,7 @@ import { Leaf, Facebook, Twitter, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="w-[95%] max-w-[2000px] mx-auto mt-10 rounded-2xl bg-emerald-900/90 text-slate-200 p-6">
+    <footer className="w-[95%] max-w-[2000px] mx-auto mt-10 rounded-2xl bg-emerald-900/90 text-slate-200 p-6 ">
       {/* Top Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Logo + About */}
